@@ -5,7 +5,7 @@ import { formatOrderDetails } from '../../../utils/orderUtils';
 // Function to generate a unique order ID
 function generateOrderId() {
     const randomNumber = Math.floor(1000 + Math.random() * 9000); // Random number between 1000 and 9999
-    return `CRISPY-${randomNumber}`; // Prefix the random number with "ABC"
+    return `CRISPY-${randomNumber}`; 
 }
 
 // Function to send the order confirmation email to the customer

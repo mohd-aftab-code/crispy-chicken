@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { FaShoppingCart, FaMapMarkerAlt } from 'react-icons/fa'; // Import location icon
+import { FaShoppingCart, FaMapMarkerAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import CartPage from './CartPage';
 import imgpopa from '../images/img-popap.jpg';
-
-// Import your images from the src directory
 import nachoFajitasImg from '../images/Nacho Fajitas.jpg';
 import superNachoImg from '../images/Super Nacho.jpg';
 import saladsImg from '../images/Salads.jpg';
@@ -12,15 +10,15 @@ import Ref from '../images/th.jpeg';
 
 const MenuPopup = ({ onClose }) => {
     const [cart, setCart] = useState([]);
-    const [showCart, setShowCart] = useState(false); // State to manage cart visibility
-    const [showLocationPopup, setShowLocationPopup] = useState(false); // State for location pop-up
+    const [showCart, setShowCart] = useState(false);
+    const [showLocationPopup, setShowLocationPopup] = useState(false);
 
     const toggleCart = () => {
-        setShowCart(!showCart); // Toggle cart visibility
+        setShowCart(!showCart);
     };
 
     const toggleLocationPopup = () => {
-        setShowLocationPopup(!showLocationPopup); // Toggle location pop-up visibility
+        setShowLocationPopup(!showLocationPopup);
     };
 
     const menuItems = [
@@ -68,26 +66,19 @@ const MenuPopup = ({ onClose }) => {
                                 </span>
                             )}
                         </div>
-                        <FaMapMarkerAlt className="text-3xl cursor-pointer text-[#c10e38]" onClick={toggleLocationPopup} /> {/* Location icon */}
+                        <FaMapMarkerAlt className="text-3xl cursor-pointer text-[#c10e38]" onClick={toggleLocationPopup} />
                         <button onClick={onClose} className="text-[#c10e38] font-bold text-xl ml-5 rounded-full p-2 bg-gray-200 hover:bg-gray-300 mr-2">
                             X
                         </button>
                     </div>
                 </div>
 
-                {/* Show CartPage when cart is open */}
                 {showCart ? (
                     <CartPage cartItems={cart} onClose={toggleCart} />
                 ) : (
                     <div className="overflow-y-auto" style={{ maxHeight: '60vh' }}>
                         <div className="mb-6">
-                            <Image
-                                src={imgpopa} // Use the imported image
-                                alt="Menu Image"
-                                width={1000} // Adjust width as needed
-                                height={90} // Adjust height as needed
-                                className="rounded-md mb-4" // Optional styling, like rounded corners
-                            />
+                            <Image src={imgpopa} alt="Menu Image" width={1000} height={90} className="rounded-md mb-4" />
                         </div>
                         <h1 className="text-3xl font-bold mb-4">Appetizers</h1>
                         {menuItems.map((item, index) => (
@@ -103,13 +94,7 @@ const MenuPopup = ({ onClose }) => {
                                         </select>
                                         <div className="flex items-center">
                                             <h4 className="mr-2 font-bold text-[#c10e38]">Qty:</h4>
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                defaultValue="1"
-                                                className="border rounded-md p-1 w-16 text-center"
-                                                id={`quantity-${index}`}
-                                            />
+                                            <input type="number" min="1" defaultValue="1" className="border rounded-md p-1 w-16 text-center" id={`quantity-${index}`} />
                                         </div>
                                     </div>
                                     <button
@@ -124,35 +109,81 @@ const MenuPopup = ({ onClose }) => {
                                     </button>
                                 </div>
                                 <div className="flex-shrink-0 ml-4 mr-4">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        width={150}
-                                        height={150}
-                                        className="object-cover rounded-md"
-                                    />
+                                    <Image src={item.image} alt={item.name} width={150} height={150} className="object-cover rounded-md" />
                                 </div>
                             </div>
                         ))}
                     </div>
                 )}
 
-                {/* Show Location Popup */}
                 {showLocationPopup && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg">
-                            <h2 className="text-2xl font-bold mb-4">Select Your Location</h2>
-                            <p className="mb-4">Please choose a location to continue your order.</p>
-                            {/* Add location selection logic here */}
+                        <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative w-full max-w-4xl">
+                            {/* Close Button (X Icon) */}
                             <button
                                 onClick={toggleLocationPopup}
-                                className="bg-[#c10e38] text-white px-4 py-2 rounded-md transition duration-200 hover:bg-red-600"
+                                className="absolute top-1 right-4 text-red-600 hover:text-red-800 text-5xl"
                             >
-                                Close
+                                &times; {/* You can replace this with an SVG icon if you want */}
                             </button>
+
+                            {/* Map Section */}
+                            <div className="flex-shrink-0 w-full md:w-1/2 mb-4 md:mb-0">
+                                <h2 className="text-xl font-bold">Restaurant Location</h2>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2942.469749951711!2d-82.93702262524725!3d42.48156497118187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824d78e731175d3%3A0x64ef734d0e06bd0f!2s18125%20E%2010%20Mile%20Rd%2C%20Roseville%2C%20MI%2048066%2C%20USA!5e0!3m2!1sen!2sin!4v1728390320375!5m2!1sen!2sin"
+                                    width="100%"
+                                    height="350"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                ></iframe>
+                            </div>
+
+                            {/* Contact Info Section */}
+                            <div className="flex-1 ml-0 md:ml-4">
+                                <table className="min-w-full mt-6 border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr>
+                                            <th className="border border-gray-300 p-2 text-left">Description</th>
+                                            <th className="border border-gray-300 p-2 text-left">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Opening Hours</td>
+                                            <td className="border border-gray-300 p-2">Monday - Sunday: 11:00 AM - 10:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Pickup</td>
+                                            <td className="border border-gray-300 p-2">Same as opening hours</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Languages</td>
+                                            <td className="border border-gray-300 p-2">English</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Payment Method</td>
+                                            <td className="border border-gray-300 p-2">Cash (Pickup)</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Address</td>
+                                            <td className="border border-gray-300 p-2">6041 Haggerty Rd, West Bloomfield Township, MI 48322</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="border border-gray-300 p-2">Phone</td>
+                                            <td className="border border-gray-300 p-2">+1 248 669 7555</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 )}
+
+
+
             </div>
         </div>
     );
