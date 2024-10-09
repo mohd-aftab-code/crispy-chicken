@@ -127,6 +127,8 @@ const MenuPopup = ({ onClose }) => {
                                 &times; {/* You can replace this with an SVG icon if you want */}
                             </button>
 
+
+
                             {/* Map Section */}
                             <div className="flex-shrink-0 w-full md:w-1/2 mb-4 md:mb-0">
                                 <h2 className="text-xl font-bold">Restaurant Location</h2>

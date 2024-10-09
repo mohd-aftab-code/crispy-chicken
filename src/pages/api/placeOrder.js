@@ -8,6 +8,8 @@ function generateOrderId() {
     return `CRISPY-${randomNumber}`; 
 }
 
+
+
 // Function to send the order confirmation email to the customer
 async function sendOrderConfirmationEmail(customerEmail, orderDetails) {
     const transporter = nodemailer.createTransport({

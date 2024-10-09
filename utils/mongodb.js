@@ -10,6 +10,7 @@ const options = {
 let client;
 let clientPromise;
 
+
 if (process.env.NODE_ENV === 'development') {
     // In development mode, use a global variable so the MongoClient is not constantly recreated during hot reloading
     if (!global._mongoClientPromise) {

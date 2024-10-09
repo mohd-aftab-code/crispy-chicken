@@ -76,6 +76,7 @@ const CartPage = ({ cartItems, onClose }) => {
 
    const handleOrderNow = async () => {
     if (!isFormSubmitted) return;
+    
 
     const orderData = {
         userDetails: submittedData,

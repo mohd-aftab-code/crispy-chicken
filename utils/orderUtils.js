@@ -32,6 +32,8 @@ export function formatOrderDetails(orderDetails) {
         formattedDetails += `    Price: $${item.price.toFixed(2)}\n\n`;
     });
 
+    
+
     // Subtotal section
     formattedDetails += `Subtotal: $${subTotal.toFixed(2)}\n`;
 

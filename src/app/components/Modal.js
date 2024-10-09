@@ -33,6 +33,7 @@ const Modal = ({ isOpen, onClose, carryOutAddress }) => {
                         className="px-4 py-2 bg-green-500 text-white rounded"
                         onClick={handleOrderNowClick}
                     >
+                        
                         Order Now
                     </button>
                 </div>
